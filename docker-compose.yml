@@ -1,7 +1,7 @@
 #!docker-compose.yml
 
 nginx-ssl-proxy:
-  image: danieldent/nginx-ssl-proxy
+  image: feshchenkod/nginx-ssl-proxy
   restart: always
   environment:
     UPSTREAM: 127.0.0.1:8080

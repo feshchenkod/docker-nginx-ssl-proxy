@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv bash
+#!/command/with-contenv bash
 /usr/local/bin/ep -v /etc/nginx/conf.d/*
 
 if [ "$DO_AUTH" == "required" ]; then

@@ -25,7 +25,7 @@ This header can be customized with the `HSTS_HEADER` variable. If set to `skip`,
 Create a docker-compose.yml file as follows:
 
     nginx-ssl-proxy:
-      image: danieldent/nginx-ssl-proxy
+      image: feshchenkod/nginx-ssl-proxy
       restart: always
       environment:
         UPSTREAM: 127.0.0.1:8080
@@ -81,11 +81,11 @@ A `/etc/letsencrypt` volume is used to maintain certificate data. An `account_ke
  
 ## Customizing
 
-Nginx configuration can be customized by editing [proxy.conf](https://github.com/DanielDent/docker-nginx-ssl-proxy/blob/master/proxy.conf) and placing a new copy of it at `/etc/nginx/conf.d/default.conf`.
+Nginx configuration can be customized by editing [proxy.conf](https://github.com/feshchenkod/docker-nginx-ssl-proxy/blob/master/proxy.conf) and placing a new copy of it at `/etc/nginx/conf.d/default.conf`.
 
 Example `Dockerfile`:
 
-    FROM danieldent/nginx-ssl-proxy
+    FROM feshchenkod/nginx-ssl-proxy
     COPY proxy.conf /etc/nginx/conf.d/default.conf
 
 ## SSL Settings
