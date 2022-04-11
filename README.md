@@ -1,3 +1,8 @@
+# Differences from the main [repository](https://github.com/DanielDent/docker-nginx-ssl-proxy)
+* Changed base image to alpine linux;
+* Enabled gzip;
+* Added brotli compression support.
+
 # SSL Front-End Proxy With Automatic Free Certificate Management
 
 Zero configuration required - set up SSL in 30 seconds. Out of the box A rating at SSL labs. HTTP/2 enabled for increased performance.
@@ -98,30 +103,9 @@ Reasonable defaults have been chosen with an eye towards a configuration which i
 
 ## Dependencies
 
-   * [nginx](https://hub.docker.com/_/nginx/) - proxy server
+   * [alpine](https://hub.docker.com/_/alpine/) - Alpine linux
+   * [nginx](https://www.nginx.com/) - proxy server
+   * [brotli](https://github.com/google/brotli) - Brotli compression format
    * [certbot](https://certbot.eff.org/) - for handling certificate creation & validation (+ some wrappers in this image)
    * [envplate](https://github.com/kreuzwerker/envplate) - for allowing use of environment variables in Nginx configuration
    * [s6-overlay](https://github.com/just-containers/s6-overlay) - for PID 1, process supervision, zombie reaping
-
-# Issues, Contributing
-
-If you run into any problems with this image, please check for issues on [GitHub](https://github.com/DanielDent/docker-nginx-ssl-proxy/issues).
-Please file a pull request or create a new issue for problems or potential improvements.
-
-# License
-
-Copyright 2015-2018 [Daniel Dent](https://www.danieldent.com/).
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use these files except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-Third-party contents included in builds of the image are licensed separately.
