@@ -1,7 +1,7 @@
 #!docker-compose.yml
 
 nginx-ssl-proxy:
-  image: feshchenkod/nginx-ssl-proxy
+  image: ghcr.io/feshchenkod/nginx-ssl-proxy:latest
   restart: always
   environment:
     UPSTREAM: 127.0.0.1:8080
@@ -10,4 +10,4 @@ nginx-ssl-proxy:
     - "80:80"
     - "443:443"
   volumes:
-    - "/etc/letsencrypt"
+    - "./letsencrypt:/etc/letsencrypt"
