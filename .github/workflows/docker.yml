@@ -9,7 +9,7 @@ on:
 env:
   REGISTRY: ghcr.io
   REPOSITORY: ghcr.io/feshchenkod/docker-nginx-ssl-proxy/
-  IMAGE_TAG: ghcr.io/feshchenkod/docker-nginx-ssl-proxy/nginx-ssl-proxy
+  IMAGE_TAG: ghcr.io/feshchenkod/nginx-ssl-proxy
 
 jobs:
   build:
@@ -38,7 +38,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ env.IMAGE_TAG }}:${{ github.sha }}
+          tags: ${{ env.IMAGE_TAG }}:${{ github.sha }},${{ env.IMAGE_TAG }}:latest
           labels: ${{ steps.meta.outputs.labels }}
           secrets: "github_token=${{ secrets.GITHUB_TOKEN }}"
 
