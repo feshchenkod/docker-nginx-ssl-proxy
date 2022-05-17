@@ -17,6 +17,9 @@ if [ "$DO_AUTH" == "required" ]; then
     echo -n "admin:" > /tmp/htpasswd
     echo $PROXY_PASSWORD | openssl passwd -apr1 -stdin >> /tmp/htpasswd
 
+    echo -n "user:" >> /tmp/htpasswd
+    echo $USER_PASSWORD | openssl passwd -apr1 -stdin >> /tmp/htpasswd
+
     IPR_EXPANDED=""
     for ip in $WHITELIST_IPS; do
         IPR_EXPANDED="$IPR_EXPANDED $ip \"yes\"; "
@@ -71,5 +74,16 @@ fi
 if [ ! -e /etc/letsencrypt/privkey-copy.pem ]; then
     cp /etc/nginx/temp-server-key.pem /etc/letsencrypt/privkey-copy.pem
 fi
+
+for i in {1..9}
+do
+    if [ ! -e /etc/letsencrypt/fullchain_$i.pem ]; then
+    cp /etc/nginx/temp-server-cert.pem /etc/letsencrypt/fullchain_$i.pem
+    fi
+
+    if [ ! -e /etc/letsencrypt/privkey_$i.pem ]; then
+        cp /etc/nginx/temp-server-key.pem /etc/letsencrypt/privkey_$i.pem
+    fi
+done
 
 exec nginx -g 'daemon off;'

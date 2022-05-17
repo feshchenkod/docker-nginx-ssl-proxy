@@ -26,6 +26,19 @@ echo Something is responding at  http://${SERVERNAME:-example.com}/
 
 while true; do
 
+    for i in {1..9}; do
+            varname=SERVERNAME_$i
+            if ! [ -z "${!varname}" ]; then
+                if certbot certonly --non-interactive --webroot -w /usr/share/nginx --agree-tos \
+                --rsa-key-size 2048 --keep-until-expiring --expand --register-unsafely-without-email -d ${!varname}; then
+                cp /etc/letsencrypt/live/${!varname:-example-$i.com}/privkey.pem /etc/letsencrypt/privkey-$i.pem
+                cp /etc/letsencrypt/live/${!varname:-example-$i.com}/fullchain.pem /etc/letsencrypt/fullchain-$i.pem
+                nginx -s reload
+                sleep 5
+                fi
+            fi
+    done
+
     if certbot certonly --non-interactive --webroot -w /usr/share/nginx --agree-tos \
             --rsa-key-size 2048 --keep-until-expiring --expand --register-unsafely-without-email -d $SERVERNAME $EXTRANAMES; then
         cp /etc/letsencrypt/live/${SERVERNAME:-example.com}/privkey.pem /etc/letsencrypt/privkey-copy.pem
