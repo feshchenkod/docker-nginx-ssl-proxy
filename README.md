@@ -5,6 +5,7 @@
 * Added HTTP Basic Authentication credentials username `user`;
 * Added support for for multiple domains (with same auth settings).
 
+
 # SSL Front-End Proxy With Automatic Free Certificate Management
 
 Zero configuration required - set up SSL in 30 seconds. Out of the box A rating at SSL labs. HTTP/2 enabled for increased performance.
@@ -32,7 +33,7 @@ This header can be customized with the `HSTS_HEADER` variable. If set to `skip`,
 Create a docker-compose.yml file as follows:
 
     nginx-ssl-proxy:
-      image: feshchenkod/nginx-ssl-proxy
+      image: ghcr.io/feshchenkod/nginx-ssl-proxy:latest
       restart: always
       environment:
         UPSTREAM: 127.0.0.1:8080
