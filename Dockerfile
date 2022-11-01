@@ -3,7 +3,7 @@ FROM alpine:latest
 LABEL org.opencontainers.image.source https://github.com/feshchenkod/docker-nginx-ssl-proxy
 
 ARG S6_OVERLAY_VERSION=v3.1.2.1
-ENV PATH=/command:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV S6_GLOBAL_PATH=/command:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 RUN apk add --no-cache wget curl certbot pwgen brotli nginx nginx-mod-http-brotli bash openssl
 
@@ -16,9 +16,7 @@ RUN set -ex; \
     curl \
       --proto '=https' --tlsv1.2 -sSLf \
       "https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz" \
-      | tar -JxpC /; \
-    \
-    echo "${PATH}" > /etc/s6-overlay/config/global_path;
+      | tar -JxpC /;
 
 # ---> INSTALLING envplate
 RUN curl -sLo /usr/local/bin/ep https://github.com/kreuzwerker/envplate/releases/download/1.0.0-RC1/ep-linux && chmod +x /usr/local/bin/ep
