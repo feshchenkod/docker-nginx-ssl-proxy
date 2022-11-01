@@ -2,7 +2,7 @@ FROM alpine:latest
 
 LABEL org.opencontainers.image.source https://github.com/feshchenkod/docker-nginx-ssl-proxy
 
-ARG S6_OVERLAY_VERSION=3.0.0.2-2
+ARG S6_OVERLAY_VERSION=3.1.2.1
 ENV PATH=/command:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 RUN apk add --no-cache wget curl certbot pwgen brotli nginx nginx-mod-http-brotli bash openssl
