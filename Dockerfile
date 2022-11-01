@@ -2,7 +2,7 @@ FROM alpine:latest
 
 LABEL org.opencontainers.image.source https://github.com/feshchenkod/docker-nginx-ssl-proxy
 
-ARG S6_OVERLAY_VERSION=3.1.2.1
+ARG S6_OVERLAY_VERSION=v3.1.2.1
 ENV PATH=/command:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 RUN apk add --no-cache wget curl certbot pwgen brotli nginx nginx-mod-http-brotli bash openssl
@@ -11,11 +11,11 @@ RUN apk add --no-cache wget curl certbot pwgen brotli nginx nginx-mod-http-brotl
 RUN set -ex; \
     curl \
       --proto '=https' --tlsv1.2 -sSLf \
-      "https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch-${S6_OVERLAY_VERSION}.tar.xz" \
+      "https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz" \
       | tar -JxpC /; \
     curl \
       --proto '=https' --tlsv1.2 -sSLf \
-      "https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64-${S6_OVERLAY_VERSION}.tar.xz" \
+      "https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz" \
       | tar -JxpC /; \
     \
     echo "${PATH}" > /etc/s6-overlay/config/global_path;
